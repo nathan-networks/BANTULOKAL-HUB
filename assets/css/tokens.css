@@ -1,0 +1,37 @@
+/* tokens.css: design tokens (sumber kebenaran tunggal).
+   Layer paling dasar; semua file lain mengonsumsi lewat var(). */
+
+@layer tokens {
+  :root {
+    /* Palet: 2 core + 1 accent (DESIGN.md) */
+    --paper: #FAF6EF;
+    --ink: #2B2620;
+    --ink-soft: #5C544A;
+    --green: #3D6B4F;
+    --green-deep: #2E523D;
+    --terracotta: #A64520;
+    --terracotta-deep: #8A3717;
+    --line: #E4DCCE;
+    --tag-face: #FFFDF8;
+    --tinted-bg: #F3ECDD;
+
+    /* Spacing scale */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-12: 48px;
+
+    /* Radius: 2 nilai sesuai sistem (R-11) */
+    --radius-card: 10px;
+    --radius-small: 6px;
+
+    /* Elevasi: hanya untuk elemen yang benar-benar mengangkat (R-12) */
+    --shadow-lift: 0 2px 10px rgba(43, 38, 32, 0.10);
+
+    /* Tipografi */
+    --font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+}

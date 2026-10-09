@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SewaAlatLokal: Sewa alat antarwarga di sekitarmu</title>
+<meta name="description" content="Platform sewa barang peer-to-peer antarwarga: perkakas, tenda kamping, kamera. Escrow otomatis, verifikasi KTP, dokumentasi foto. Bagian dari BANTULOKAL HUB bersama JasaBantuLokal.">
+<meta property="og:title" content="SewaAlatLokal: Sewa alat antarwarga di sekitarmu">
+<meta property="og:description" content="Platform sewa barang peer-to-peer antarwarga: perkakas, tenda kamping, kamera. Escrow otomatis, verifikasi KTP, dokumentasi foto. Bagian dari BANTULOKAL HUB bersama JasaBantuLokal.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bantulokal.example/sewaalatlokal/index.html">
+<meta name="theme-color" content="#FAF6EF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='5' fill='%233D6B4F'/%3E%3Ccircle cx='16' cy='10' r='3' fill='%23FAF6EF'/%3E%3Cpath d='M16 14v10' stroke='%23FAF6EF' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body id="top">
+<a class="skip-link" href="#utama">Langsung ke konten</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">Sewa<span>Alat</span>Lokal</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="visually-hidden">Buka menu navigasi</span>
+    </button>
+    <nav class="nav-menu" id="navMenu" aria-label="Navigasi utama">
+      <a href="katalog.html">Katalog</a>
+      <a href="#cara-sewa" aria-current="page">Cara Sewa</a>
+      <a href="layanan.html">Layanan</a>
+      <a href="faq.html">FAQ</a>
+      <a href="../jasabantulokal/index.html">JasaBantu</a>
+      <a class="btn btn-accent btn-small" href="daftar.html">Daftarkan Alat</a>
+    </nav>
+  </div>
+</header>
+
+<main id="utama">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Beranda</a></li>
+        <li><span aria-current="page">SewaAlatLokal</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <h1>Sewa alat dari tetangga, tanpa perlu beli baru.</h1>
+      <p class="lead">Butuh bor untuk benerin rak, tenda buat camping akhir pekan, atau kamera buat acara keluarga? Cek dulu punya tetangga sekitar. Di sini biaya sewa dan deposit ditahan escrow, baru cair setelah barang kembali utuh.</p>
+      <div class="hero-actions">
+        <a class="btn btn-accent" href="#katalog">Lihat kategori alat</a>
+        <a class="btn btn-outline" href="#cara-sewa">Cara kerja sewa</a>
+      </div>
+      <p class="hero-note">Bagian dari BANTULOKAL HUB: sewa barang antarwarga lewat SewaAlatLokal, jasa harian terampil lewat JasaBantuLokal.</p>
+    </div>
+
+    <div class="hero-tags" aria-hidden="false">
+      <div class="tagcard tagcard-1" aria-hidden="true">
+        <span class="tagcard-hole"></span>
+        <span class="tagcard-kicker">Kategori</span>
+        <strong>Perkakas pertukangan</strong>
+        <span class="tagcard-status">Katalog dalam persiapan</span>
+      </div>
+      <div class="tagcard tagcard-2" aria-hidden="true">
+        <span class="tagcard-hole"></span>
+        <span class="tagcard-kicker">Kategori</span>
+        <strong>Tenda kamping</strong>
+        <span class="tagcard-status">Katalog dalam persiapan</span>
+      </div>
+      <div class="tagcard tagcard-3" aria-hidden="true">
+        <span class="tagcard-hole"></span>
+        <span class="tagcard-kicker">Kategori</span>
+        <strong>Kamera foto</strong>
+        <span class="tagcard-status">Katalog dalam persiapan</span>
+      </div>
+      <p class="hero-tags-caption">Contoh kategori alat. Katalog unit belum dibuka.</p>
+    </div>
+  </section>
+
+  <!-- KATALOG -->
+  <section class="section" id="katalog">
+    <div class="wrap">
+      <h2>Katalog kategori alat</h2>
+      <p class="section-intro">Tiga kategori pertama yang disiapkan. Pilih kategori untuk menyaring tampilan.</p>
+
+      <div class="filterbar" role="group" aria-label="Filter kategori">
+        <button class="filter" data-filter="semua" aria-pressed="true">Semua</button>
+        <button class="filter" data-filter="perkakas" aria-pressed="false">Perkakas</button>
+        <button class="filter" data-filter="outdoor" aria-pressed="false">Outdoor</button>
+        <button class="filter" data-filter="fotografi" aria-pressed="false">Fotografi</button>
+      </div>
+
+      <div class="catalog" id="catalogGrid">
+        <article class="catcard" data-cat="perkakas">
+          <span class="tagcard-hole" aria-hidden="true"></span>
+          <svg class="catcard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 0 0 6-6L14 13l-3-3 3.7-3.7z"/></svg>
+          <h3>Perkakas pertukangan</h3>
+          <p>Bor, tangga, gergaji, dan perkakas rumah untuk perbaikan sesekali. Alat yang biasanya menganggur di gudang jadi menghasilkan.</p>
+          <p class="catcard-status"><span class="status-tag">Belum ada unit</span> Katalog unit dibuka setelah masa persiapan platform.</p>
+        </article>
+        <article class="catcard" data-cat="outdoor">
+          <span class="tagcard-hole" aria-hidden="true"></span>
+          <svg class="catcard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 18 9 7l3.5 6L15 9l5.5 9z"/><path d="M9 7v11"/><circle cx="18" cy="5" r="2"/></svg>
+          <h3>Tenda &amp; outdoor</h3>
+          <p>Tenda kamping dan perlengkapan aktivitas luar ruang untuk pemakaian musiman. Cukup sewa saat liburan, tanpa biaya simpan.</p>
+          <p class="catcard-status"><span class="status-tag">Belum ada unit</span> Katalog unit dibuka setelah masa persiapan platform.</p>
+        </article>
+        <article class="catcard" data-cat="fotografi">
+          <span class="tagcard-hole" aria-hidden="true"></span>
+          <svg class="catcard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8.5 7 10 4.5h4L15.5 7"/><circle cx="12" cy="13.5" r="3.5"/></svg>
+          <h3>Kamera foto</h3>
+          <p>Kamera untuk acara keluarga atau proyek sesekali. Lebih murah daripada membeli, tetap dapat hasil yang bagus.</p>
+          <p class="catcard-status"><span class="status-tag">Belum ada unit</span> Katalog unit dibuka setelah masa persiapan platform.</p>
+        </article>
+      </div>
+
+      <!-- FORM DAFTAR -->
+      <div class="daftar" id="daftar">
+        <h3>Punya alat yang jarang kepakai?</h3>
+        <p>Daftarkan alatmu jadi salah satu unit pertama katalog. Gratis, dan tim Quality Control yang mengurus verifikasinya.</p>
+        <form id="formDaftar" novalidate>
+          <div class="fieldrow">
+            <div class="field">
+              <label for="fNama">Nama alat <span aria-hidden="true">*</span></label>
+              <input type="text" id="fNama" name="nama" required data-label="Nama alat" aria-describedby="errNama" placeholder="Contoh: Bor listrik 10mm">
+              <p class="field-error" id="errNama" hidden>Tuliskan nama alat.</p>
+            </div>
+            <div class="field">
+              <label for="fKategori">Kategori <span aria-hidden="true">*</span></label>
+              <select id="fKategori" name="kategori" required data-label="Kategori" aria-describedby="errKategori">
+                <option value="">Pilih kategori</option>
+                <option value="Perkakas pertukangan">Perkakas pertukangan</option>
+                <option value="Tenda & outdoor">Tenda &amp; outdoor</option>
+                <option value="Kamera foto">Kamera foto</option>
+              </select>
+              <p class="field-error" id="errKategori" hidden>Pilih salah satu kategori.</p>
+            </div>
+          </div>
+          <div class="fieldrow">
+            <div class="field">
+              <label for="fPemilik">Nama pemilik <span aria-hidden="true">*</span></label>
+              <input type="text" id="fPemilik" name="pemilik" required data-label="Nama pemilik" aria-describedby="errPemilik" placeholder="Nama lengkapmu">
+              <p class="field-error" id="errPemilik" hidden>Tuliskan nama pemilik.</p>
+            </div>
+            <div class="field">
+              <label for="fKontak">Nomor WhatsApp <span aria-hidden="true">*</span></label>
+              <input type="tel" id="fKontak" name="kontak" required data-label="Nomor WhatsApp" aria-describedby="errKontak" placeholder="08xx xxxx xxxx">
+              <p class="field-error" id="errKontak" hidden>Tuliskan nomor yang bisa dihubungi.</p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="fDeskripsi">Kondisi &amp; kelengkapan alat</label>
+            <textarea id="fDeskripsi" name="deskripsi" rows="3" placeholder="Misal: lengkap dengan koper, mesin normal, kabel utuh"></textarea>
+          </div>
+          <button type="submit" class="btn btn-accent">Kirim pendaftaran</button>
+          <p class="form-note">Pendaftaran belum terhubung ke server. Verifikasi KTP dan pengecekan fisik alat dilakukan tim Quality Control sebelum unit tayang.</p>
+        </form>
+        <div class="form-result" id="formResult" role="status" hidden tabindex="-1">
+          <h2>Ringkasan pendaftaran (demo)</h2>
+          <dl id="resultList"></dl>
+          <p class="form-note">Data di atas hanya tampil di halaman ini dan tidak dikirim ke mana pun.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARA SEWA -->
+  <section class="section section-tinted" id="cara-sewa">
+    <div class="wrap">
+      <h2>Cara kerja sewa</h2>
+      <p class="section-intro">Sesuai SOP platform: empat tahap dari klik pesan sampai deposit cair. Escrow menjaga dua pihak sejak awal.</p>
+
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num" aria-hidden="true"><span>01</span></span>
+          <div>
+            <h3>Pemesanan &amp; proteksi escrow</h3>
+            <p>Penyewa memilih barang, mengunci jadwal, dan membayar biaya sewa beserta deposit jaminan. Sistem menahan kedua jumlah itu di rekening penampung.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true"><span>02</span></span>
+          <div>
+            <h3>Dokumentasi serah terima</h3>
+            <p>Pemilik dan penyewa bertemu langsung, lalu mengunggah foto kondisi awal alat ke aplikasi sebagai baseline bersama.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true"><span>03</span></span>
+          <div>
+            <h3>Inspeksi akhir</h3>
+            <p>Barang dikembalikan tepat waktu, pemilik memverifikasi tidak ada kerusakan baru dibanding foto baseline.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true"><span>04</span></span>
+          <div>
+            <h3>Pencairan &amp; ulasan</h3>
+            <p>Deposit cair 100% kembali ke penyewa, dana sewa diteruskan ke pemilik, dan modul ulasan terbuka untuk kedua pihak.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- KEAMANAN -->
+  <section class="section" id="keamanan">
+    <div class="wrap">
+      <h2>Jaminan transaksi</h2>
+      <p class="section-intro">Tiga lapis perlindungan yang dijalankan platform dan tim operasional.</p>
+      <div class="safety">
+        <div class="safety-item">
+          <svg class="safety-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><circle cx="8" cy="11" r="2.2"/><path d="M5 16.5c.7-1.6 1.8-2.3 3-2.3s2.3.7 3 2.3"/><path d="M14.5 9.5H19M14.5 13h3"/></svg>
+          <span class="safety-label">Lapis 1</span>
+          <h3>Verifikasi identitas pemilik</h3>
+          <p>Tim Quality Control memeriksa KTP setiap pemilik sebelum alatnya tayang di katalog.</p>
+        </div>
+        <div class="safety-item">
+          <svg class="safety-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 7.7-7.5 9.5-4.3-1.8-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2 2 4-4.5"/></svg>
+          <span class="safety-label">Lapis 2</span>
+          <h3>Escrow otomatis</h3>
+          <p>Biaya sewa dan deposit ditahan sistem penampung, baru dilepas setelah kondisi barang disetujui.</p>
+        </div>
+        <div class="safety-item">
+          <svg class="safety-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8.5 7 10 4.5h4L15.5 7"/><circle cx="12" cy="13.5" r="3.5"/><path d="M17.5 10.5h.01"/></svg>
+          <span class="safety-label">Lapis 3</span>
+          <h3>Dokumentasi foto</h3>
+          <p>Foto kondisi awal saat serah terima menjadi baseline penilaian saat barang dikembalikan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILAR 2: JASABANTULOKAL -->
+  <section class="section section-tinted">
+    <div class="wrap">
+      <h2>Butuh tangan terampil, bukan alat?</h2>
+      <p class="section-intro">Satu hub, dua pilar. Kalau yang kamu butuhkan orangnya, JasaBantuLokal siapkan tenaga terampil dari lingkungan sekitar, lengkap dengan pemeriksaan identitas dan SKCK.</p>
+      <div class="chips" aria-label="Contoh layanan JasaBantuLokal">
+        <span class="chip">Reparasi pipa</span>
+        <span class="chip">Perbaikan listrik</span>
+        <span class="chip">Perawatan taman</span>
+        <span class="chip">Pembersihan rumah</span>
+      </div>
+      <a class="btn btn-accent" href="../jasabantulokal/index.html">Lihat JasaBantuLokal</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p class="footer-brand">Sewa<span>Alat</span>Lokal</p>
+    <p>Bagian dari BANTULOKAL HUB: sewa barang antarwarga dan jasa harian terampil dalam satu platform komunitas.</p>
+    <nav class="footer-map" aria-label="Peta situs">
+      <a href="../index.html">Beranda HUB</a>
+      <a href="katalog.html">Katalog</a>
+      <a href="layanan.html">Layanan</a>
+      <a href="faq.html">FAQ</a>
+      <a href="../jasabantulokal/index.html">JasaBantuLokal</a>
+      <a href="daftar.html">Daftarkan Alat</a>
+      <a href="../tentang-kami.html">Tentang Kami</a>
+      <a href="../kebijakan-privasi.html">Kebijakan Privasi</a>
+      <a href="../syarat-ketentuan.html">Syarat &amp; Ketentuan</a>
+    </nav>
+    <p class="footer-note">Katalog unit dalam masa persiapan; pendaftaran online belum terhubung ke server.</p>
+    <a class="footer-top" href="#top">Kembali ke atas</a>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

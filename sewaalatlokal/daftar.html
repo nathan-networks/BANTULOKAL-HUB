@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftarkan Alat: SewaAlatLokal</title>
+<meta name="description" content="Daftarkan alat yang jarang terpakai ke katalog SewaAlatLokal. Verifikasi KTP oleh tim Quality Control sebelum unit tayang.">
+<meta property="og:title" content="Daftarkan Alat: SewaAlatLokal">
+<meta property="og:description" content="Daftarkan alat yang jarang terpakai ke katalog SewaAlatLokal. Verifikasi KTP oleh tim Quality Control sebelum unit tayang.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bantulokal.example/sewaalatlokal/daftar.html">
+<meta name="theme-color" content="#FAF6EF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='5' fill='%233D6B4F'/%3E%3Ccircle cx='16' cy='10' r='3' fill='%23FAF6EF'/%3E%3Cpath d='M16 14v10' stroke='%23FAF6EF' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body id="top">
+<a class="skip-link" href="#utama">Langsung ke konten</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">Sewa<span>Alat</span>Lokal</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="visually-hidden">Buka menu navigasi</span>
+    </button>
+    <nav class="nav-menu" id="navMenu" aria-label="Navigasi utama">
+      <a href="katalog.html">Katalog</a>
+      <a href="index.html#cara-sewa">Cara Sewa</a>
+      <a href="layanan.html">Layanan</a>
+      <a href="faq.html">FAQ</a>
+      <a href="../jasabantulokal/index.html">JasaBantu</a>
+      <a class="btn btn-accent btn-small" href="daftar.html" aria-current="page">Daftarkan Alat</a>
+    </nav>
+  </div>
+</header>
+
+<main id="utama">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Beranda</a></li>
+        <li><span aria-current="page">Daftarkan Alat</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="daftar legal-page daftar-narrow">
+        <h1 class="page-title">Daftarkan alatmu</h1>
+        <p>Isi data alat di bawah. Setelah masa persiapan, tim Quality Control menghubungimu untuk verifikasi KTP dan pengecekan fisik sebelum unit tayang di katalog.</p>
+
+        <form id="formDaftar" novalidate>
+          <div class="fieldrow">
+            <div class="field">
+              <label for="fNama">Nama alat <span aria-hidden="true">*</span></label>
+              <input type="text" id="fNama" name="nama" required data-label="Nama alat" aria-describedby="errNama" placeholder="Contoh: Bor listrik 10mm">
+              <p class="field-error" id="errNama" hidden>Tuliskan nama alat.</p>
+            </div>
+            <div class="field">
+              <label for="fKategori">Kategori <span aria-hidden="true">*</span></label>
+              <select id="fKategori" name="kategori" required data-label="Kategori" aria-describedby="errKategori">
+                <option value="">Pilih kategori</option>
+                <option value="Perkakas pertukangan">Perkakas pertukangan</option>
+                <option value="Tenda & outdoor">Tenda &amp; outdoor</option>
+                <option value="Kamera foto">Kamera foto</option>
+              </select>
+              <p class="field-error" id="errKategori" hidden>Pilih salah satu kategori.</p>
+            </div>
+          </div>
+          <div class="fieldrow">
+            <div class="field">
+              <label for="fPemilik">Nama pemilik <span aria-hidden="true">*</span></label>
+              <input type="text" id="fPemilik" name="pemilik" required data-label="Nama pemilik" aria-describedby="errPemilik" placeholder="Nama lengkapmu">
+              <p class="field-error" id="errPemilik" hidden>Tuliskan nama pemilik.</p>
+            </div>
+            <div class="field">
+              <label for="fKontak">Nomor WhatsApp <span aria-hidden="true">*</span></label>
+              <input type="tel" id="fKontak" name="kontak" required data-label="Nomor WhatsApp" aria-describedby="errKontak" placeholder="08xx xxxx xxxx">
+              <p class="field-error" id="errKontak" hidden>Tuliskan nomor yang bisa dihubungi.</p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="fDeskripsi">Kondisi &amp; kelengkapan alat</label>
+            <textarea id="fDeskripsi" name="deskripsi" rows="3" placeholder="Misal: lengkap dengan koper, mesin normal, kabel utuh"></textarea>
+          </div>
+          <button type="submit" class="btn btn-accent">Kirim pendaftaran</button>
+          <p class="form-note">Pendaftaran belum terhubung ke server. Verifikasi KTP dan pengecekan fisik alat dilakukan tim Quality Control sebelum unit tayang.</p>
+        </form>
+        <div class="form-result" id="formResult" role="status" hidden tabindex="-1">
+          <h2>Ringkasan pendaftaran (demo)</h2>
+          <dl id="resultList"></dl>
+          <p class="form-note">Data di atas hanya tampil di halaman ini dan tidak dikirim ke mana pun.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tinted">
+    <div class="wrap">
+      <h2>Apa yang terjadi setelah kamu mendaftar</h2>
+      <p class="section-intro">Empat langkah sebelum alatmu resmi tayang dan bisa disewa tetangga.</p>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num" aria-hidden="true"><span>01</span></span>
+          <div>
+            <h3>Tim QC menghubungimu</h3>
+            <p>Verifikasi KTP dan konfirmasi detail alat lewat WhatsApp.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true"><span>02</span></span>
+          <div>
+            <h3>Pengecekan fisik</h3>
+            <p>Kondisi alat diperiksa dan difoto sebagai baseline serah terima.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true"><span>03</span></span>
+          <div>
+            <h3>Unit tayang</h3>
+            <p>Alat masuk katalog dengan status siap sewa dan aturan deposit yang jelas.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true"><span>04</span></span>
+          <div>
+            <h3>Terima penghasilan</h3>
+            <p>Setiap sewa selesai, dana diteruskan ke rekeningmu lewat sistem escrow.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p class="footer-brand">Sewa<span>Alat</span>Lokal</p>
+    <p>Bagian dari BANTULOKAL HUB: sewa barang antarwarga dan jasa harian terampil dalam satu platform komunitas.</p>
+    <nav class="footer-map" aria-label="Peta situs">
+      <a href="../index.html">Beranda HUB</a>
+      <a href="katalog.html">Katalog</a>
+      <a href="layanan.html">Layanan</a>
+      <a href="faq.html">FAQ</a>
+      <a href="../jasabantulokal/index.html">JasaBantuLokal</a>
+      <a href="daftar.html">Daftarkan Alat</a>
+      <a href="../tentang-kami.html">Tentang Kami</a>
+      <a href="../kebijakan-privasi.html">Kebijakan Privasi</a>
+      <a href="../syarat-ketentuan.html">Syarat &amp; Ketentuan</a>
+    </nav>
+    <p class="footer-note">Katalog unit dalam masa persiapan; pendaftaran online belum terhubung ke server.</p>
+    <a class="footer-top" href="#top">Kembali ke atas</a>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

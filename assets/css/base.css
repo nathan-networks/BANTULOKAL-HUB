@@ -1,0 +1,34 @@
+/* base.css: reset ringkas + gaya elemen global */
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* Make Interfaces Feel Better: tipografi lebih rapi */
+  h1, h2, h3, h4 { text-wrap: balance; }
+  p, li, dd { text-wrap: pretty; }
+  td { font-variant-numeric: tabular-nums; }
+
+  img, svg { max-width: 100%; }
+
+  :focus-visible {
+    outline: 3px solid var(--terracotta);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .btn, .filter { transition: none; }
+  }
+}
