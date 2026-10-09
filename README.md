@@ -370,3 +370,7 @@ Sebelum deploy, verifikasi hal-hal berikut:
 Tambahkan informasi lisensi jika proyek akan didistribusikan secara publik. Untuk kerja tim, gunakan branch atau pull request sesuai kesepakatan tim dan sertakan ringkasan perubahan serta hasil pengujian.
 
 **BANTULOKAL HUB** — satu platform komunitas untuk menghubungkan kebutuhan layanan harian dan penyewaan alat antarwarga.
+
+---
+
+**GOOD LUCK**
