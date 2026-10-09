@@ -773,10 +773,109 @@
       var status = document.getElementById("serviceRequestStatus");
       var submitButton = document.getElementById("requestSubmit");
 
+      var confirmModal = document.getElementById("requestConfirmModal");
+      var editRequestButton = document.getElementById("editRequestButton");
+      var confirmRequestButton = document.getElementById("confirmRequestButton");
+      var pendingRequestPayload = null;
+
+      var categorySelect = document.getElementById("requestCategory");
+      var workerField = document.getElementById("requestWorkersField");
+      var priceEstimate = document.getElementById("requestPriceEstimate");
+      var priceNote = document.getElementById("requestPriceNote");
+
+      var pricingByCategory = {};
+
+      function formatRupiah(amount) {
+        return new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR",
+          maximumFractionDigits: 0
+        }).format(amount);
+      }
+
+      function updatePricingDisplay() {
+        var slug = categorySelect.value;
+        var pricing = pricingByCategory[slug];
+
+        if (!pricing) {
+          workerField.hidden = true;
+          priceEstimate.textContent = "Pilih kategori untuk melihat estimasi harga.";
+          priceNote.textContent =
+            "Harga akhir dan biaya tambahan yang disetujui akan dikonfirmasi tim.";
+          return;
+        }
+
+        var perWorker = pricing.pricing_method === "per_worker";
+
+        workerField.hidden = !perWorker;
+
+        var workers = perWorker ? Number(slider.value) : 1;
+        var total = Number(pricing.base_price) * workers;
+
+        priceEstimate.textContent =
+          "Estimasi biaya layanan: " + formatRupiah(total);
+
+        if (perWorker) {
+          priceNote.textContent =
+            "Tarif dasar " + formatRupiah(Number(pricing.base_price)) +
+            " per orang. Estimasi untuk " + workers +
+            " orang; harga akhir dikonfirmasi tim.";
+        } else if (pricing.pricing_method === "per_order") {
+          priceNote.textContent =
+            "Tarif dasar per pesanan, termasuk hingga " +
+            pricing.included_quantity + " item. Harga barang dan biaya lain " +
+            "yang disetujui dihitung terpisah.";
+        } else if (pricing.pricing_method === "per_trip") {
+          priceNote.textContent =
+            "Tarif dasar per perjalanan, termasuk hingga " +
+            pricing.included_quantity + " km. Biaya jarak tambahan " +
+            "dan biaya lain dikonfirmasi tim.";
+        } else if (pricing.pricing_method === "per_session") {
+          priceNote.textContent =
+            "Tarif dasar per sesi, termasuk " +
+            pricing.included_quantity + " " +
+            (pricing.included_unit || "unit") +
+            ". Detail pekerjaan dikonfirmasi tim.";
+        } else {
+          priceNote.textContent =
+            "Tarif dasar per proyek. Detail pekerjaan dan harga akhir " +
+            "dikonfirmasi tim sebelum pembayaran.";
+        }
+      }
+
+      async function loadServicePricing() {
+        try {
+          var response = await fetch(
+            "http://127.0.0.1:8000/api/service-pricing",
+            {
+              headers: { "Accept": "application/json" }
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("Gagal mengambil data harga.");
+          }
+
+          var result = await response.json();
+
+          (result.data || []).forEach(function (pricing) {
+            pricingByCategory[pricing.slug] = pricing;
+          });
+
+          updatePricingDisplay();
+        } catch (error) {
+          priceEstimate.textContent = "Estimasi harga belum dapat dimuat.";
+          priceNote.textContent =
+            "Periksa koneksi server, lalu muat ulang halaman.";
+        }
+      }
+
       function updateWorkerValue() {
         if (slider && workerValue) {
           workerValue.textContent = slider.value + " orang";
         }
+
+        updatePricingDisplay();
       }
 
       if (slider) {
@@ -784,69 +883,179 @@
         updateWorkerValue();
       }
 
-      form.addEventListener("submit", async function (event) {
+      if (categorySelect) {
+        categorySelect.addEventListener("change", updatePricingDisplay);
+      }
+
+loadServicePricing();
+
+
+    function showRequestConfirmation(payload) {
+        if (
+            !confirmModal ||
+            !editRequestButton ||
+            !confirmRequestButton
+        ) {
+            status.hidden = false;
+            status.textContent =
+                "Popup konfirmasi belum ditemukan. Periksa HTML popup.";
+            return;
+        }
+
+        var selectedOption =
+            categorySelect.options[categorySelect.selectedIndex];
+
+        var pricing = pricingByCategory[payload.category];
+        var perWorker =
+            pricing && pricing.pricing_method === "per_worker";
+
+        document.getElementById("confirmCustomerName").textContent =
+            payload.customer_name;
+
+        document.getElementById("confirmCategory").textContent =
+            selectedOption ? selectedOption.textContent.trim() : payload.category;
+
+        document.getElementById("confirmWorkersRow").hidden = !perWorker;
+
+        document.getElementById("confirmWorkers").textContent =
+            payload.worker_count + " orang";
+
+        document.getElementById("confirmLocation").textContent =
+            payload.location;
+
+        document.getElementById("confirmDate").textContent =
+            payload.preferred_date || "Belum ditentukan";
+
+        document.getElementById("confirmDescription").textContent =
+            payload.description;
+
+        var estimate = pricing
+            ? Number(pricing.base_price) * (perWorker ? payload.worker_count : 1)
+            : null;
+
+        document.getElementById("confirmPrice").textContent =
+            estimate !== null && Number.isFinite(estimate)
+                ? formatRupiah(estimate)
+                : "Belum tersedia";
+
+        confirmModal.hidden = false;
+        document.body.style.overflow = "hidden";
+        editRequestButton.focus();
+    }
+
+    function closeRequestConfirmation() {
+        if (!confirmModal) return;
+
+        confirmModal.hidden = true;
+        document.body.style.overflow = "";
+        pendingRequestPayload = null;
+        submitButton.focus();
+    }
+
+    form.addEventListener("submit", function (event) {
         event.preventDefault();
 
         if (!form.reportValidity()) return;
 
-        var originalButtonText = submitButton.textContent;
-
-        submitButton.disabled = true;
-        submitButton.textContent = "Mengirim...";
-
-        status.hidden = false;
-        status.textContent = "Mengirim permintaan...";
-
-        var payload = {
-          customer_name: document.getElementById("requestCustomerName").value.trim(),
-          customer_email: document.getElementById("requestEmail").value.trim(),
-          customer_whatsapp: document.getElementById("requestWhatsapp").value.trim(),
-          category: document.getElementById("requestCategory").value,
-          description: document.getElementById("requestDescription").value.trim(),
-          location: document.getElementById("requestLocation").value.trim(),
-          worker_count: Number(slider.value),
-          preferred_date: document.getElementById("requestDate").value || null,
-          terms_accepted: document.getElementById("requestTermsAccepted").checked
+        pendingRequestPayload = {
+            customer_name: document.getElementById("requestCustomerName").value.trim(),
+            customer_email: document.getElementById("requestEmail").value.trim(),
+            customer_whatsapp: document.getElementById("requestWhatsapp").value.trim(),
+            category: categorySelect.value,
+            description: document.getElementById("requestDescription").value.trim(),
+            location: document.getElementById("requestLocation").value.trim(),
+            worker_count: Number(slider.value),
+            preferred_date: document.getElementById("requestDate").value || null,
+            terms_accepted: document.getElementById("requestTermsAccepted").checked
         };
 
-        try {
-          var response = await fetch(
-            "http://127.0.0.1:8000/api/service-requests",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-              },
-              body: JSON.stringify(payload)
+        showRequestConfirmation(pendingRequestPayload);
+    });
+
+    if (editRequestButton) {
+        editRequestButton.addEventListener(
+            "click",
+            closeRequestConfirmation
+        );
+    }
+
+    if (confirmModal) {
+        confirmModal.querySelectorAll("[data-close-request-modal]")
+            .forEach(function (element) {
+                element.addEventListener(
+                    "click",
+                    closeRequestConfirmation
+                );
+            });
+
+        document.addEventListener("keydown", function (event) {
+            if (!confirmModal.hidden && event.key === "Escape") {
+                closeRequestConfirmation();
             }
-          );
+        });
+    }
 
-          var result = await response.json();
+    if (confirmRequestButton) {
+        confirmRequestButton.addEventListener("click", async function () {
+            if (!pendingRequestPayload) return;
 
-          if (!response.ok) {
-            var errorMessage = result.errors
-              ? Object.values(result.errors).flat().join(" ")
-              : result.message || "Permintaan gagal dikirim.";
+            var payload = pendingRequestPayload;
+            var originalButtonText = submitButton.textContent;
 
-            throw new Error(errorMessage);
-          }
+            confirmRequestButton.disabled = true;
+            submitButton.disabled = true;
+            submitButton.textContent = "Mengirim...";
 
-          status.textContent =
-            "Permintaan #" + result.data.id +
-            " berhasil dikirim dan sedang menunggu peninjauan. " +
-            "Biaya belum ditetapkan dan permintaan belum dikonfirmasi.";
+            status.hidden = false;
+            status.textContent = "Mengirim permintaan...";
 
-          form.reset();
-          updateWorkerValue();
-        } catch (error) {
-          status.textContent =
-            "Gagal mengirim permintaan: " + error.message;
-        } finally {
-          submitButton.disabled = false;
-          submitButton.textContent = originalButtonText;
-        }
-      });
+            try {
+                var response = await fetch(
+                    "http://127.0.0.1:8000/api/service-requests",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify(payload)
+                    }
+                );
+
+                var result = await response.json();
+
+                if (!response.ok) {
+                    var errorMessage = result.errors
+                        ? Object.values(result.errors).flat().join(" ")
+                        : result.message || "Permintaan gagal dikirim.";
+
+                    throw new Error(errorMessage);
+                }
+
+                confirmModal.hidden = true;
+                document.body.style.overflow = "";
+                pendingRequestPayload = null;
+
+                status.textContent =
+                    "Permintaan #" + result.data.id +
+                    " berhasil dikirim dan sedang menunggu peninjauan. " +
+                    "Biaya belum ditetapkan dan permintaan belum dikonfirmasi.";
+
+                form.reset();
+                updateWorkerValue();
+
+            } catch (error) {
+                status.textContent =
+                    "Gagal mengirim permintaan: " + error.message;
+
+            } finally {
+                confirmRequestButton.disabled = false;
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
+        });
+    }
+
     }
 
 

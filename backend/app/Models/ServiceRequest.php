@@ -32,6 +32,10 @@ class ServiceRequest extends Model
         'acknowledgement_sent_at',
         'approved_at',
         'completed_at',
+        'service_fee',
+        'approved_expenses',
+        'expense_notes',
+        'payment_verified_by',
     ];
 
     protected function casts(): array
@@ -48,6 +52,8 @@ class ServiceRequest extends Model
             'acknowledgement_sent_at' => 'datetime',
             'approved_at' => 'datetime',
             'completed_at' => 'datetime',
+            'service_fee' => 'decimal:2',
+            'approved_expenses' => 'decimal:2',
         ];
     }
 
@@ -66,4 +72,13 @@ class ServiceRequest extends Model
             'reviewed_by'
         );
     }
+
+    public function paymentVerifier(): BelongsTo
+    {
+        return $this->belongsTo(
+            User::class,
+            'payment_verified_by'
+        );
+    }
+
 }

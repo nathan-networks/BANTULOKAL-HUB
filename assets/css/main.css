@@ -483,3 +483,129 @@ body.terms-modal-open {
   margin: 4px 0 0;
   accent-color: #665f55;
 }
+
+
+/* JasaBantuLokal — confirmation popup */
+.request-modal[hidden] {
+    display: none !important;
+}
+
+.request-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.request-modal__backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(25, 23, 19, 0.65);
+}
+
+.request-modal__panel {
+    position: relative;
+    width: min(100%, 600px);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 26px;
+    border: 1px solid var(--border, #e6e0d6);
+    border-radius: 16px;
+    background: var(--surface, #fff);
+    color: var(--text, #292820);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.request-modal__panel h2 {
+    margin-top: 0;
+}
+
+.request-modal__intro,
+.request-modal__note {
+    color: var(--muted, #716e65);
+    line-height: 1.65;
+}
+
+.request-modal__details {
+    display: grid;
+    gap: 16px;
+    margin: 22px 0;
+}
+
+.request-modal__details > div {
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border, #e6e0d6);
+}
+
+.request-modal__details dt {
+    margin-bottom: 5px;
+    color: var(--muted, #716e65);
+    font-size: 13px;
+}
+
+.request-modal__details dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+.request-modal__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.request-modal__actions button {
+    min-height: 44px;
+}
+
+#confirmRequestButton {
+    background: var(--accent, #a64520);
+    color: white;
+    border-color: var(--accent, #a64520);
+}
+
+@media (max-width: 480px) {
+    .request-modal__panel {
+        padding: 20px;
+    }
+
+    .request-modal__actions {
+        flex-direction: column-reverse;
+    }
+
+    .request-modal__actions button {
+        width: 100%;
+    }
+}
+
+
+.request-modal__privacy {
+    margin-top: 20px;
+    padding: 16px;
+    border: 1px solid var(--border, #e6e0d6);
+    border-radius: 10px;
+    background: var(--surface, #fff);
+}
+
+.request-modal__privacy h3 {
+    margin-top: 0;
+    font-size: 16px;
+}
+
+.request-modal__privacy p {
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.request-modal__privacy a,
+.terms-checkbox a {
+    color: var(--accent, #a64520);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}

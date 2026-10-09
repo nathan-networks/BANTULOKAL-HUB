@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\FreelancerApplicationController;
 use App\Http\Controllers\Api\ServiceRequestController;
+use App\Http\Controllers\Api\ServicePricingController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -20,3 +21,5 @@ Route::post('/bookings', [BookingController::class, 'store']);
 Route::post('/freelancer-applications', [FreelancerApplicationController::class, 'store']);
 
 Route::post('/service-requests', [ServiceRequestController::class, 'store']);
+
+Route::get('/service-pricing', [ServicePricingController::class, 'index']);

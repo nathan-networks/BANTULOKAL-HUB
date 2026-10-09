@@ -249,7 +249,7 @@
             </p>
           </div>
 
-          <div class="field">
+          <div class="field" id="requestWorkersField">
             <label for="requestWorkers">
               Jumlah freelancer yang dibutuhkan
             </label>
@@ -267,6 +267,16 @@
             </div>
             <p class="form-note">
               Maksimal 4 orang. Ketersediaan tenaga akan diperiksa oleh tim.
+            </p>
+          </div>
+
+          <div class="field" aria-live="polite">
+            <p class="form-note" id="requestPriceEstimate">
+              Memuat estimasi harga...
+            </p>
+            <p class="form-note" id="requestPriceNote">
+              Estimasi biaya layanan akan dikonfirmasi oleh tim sebelum pembayaran.
+              Biaya tambahan, jika ada, akan disepakati terlebih dahulu.
             </p>
           </div>
 
@@ -327,9 +337,12 @@
                 required
               >
               <span>
-                Saya menyetujui ketentuan pengajuan jasa dan memahami
-                bahwa permintaan ini perlu ditinjau oleh tim sebelum
-                biaya dan ketersediaan dikonfirmasi.
+                Saya telah membaca dan menyetujui
+                <a href="../syarat-ketentuan.html" target="_blank" rel="noopener noreferrer">Syarat dan Ketentuan</a>.
+                Saya telah membaca
+                <a href="../kebijakan-privasi.html" target="_blank" rel="noopener noreferrer">Kebijakan Privasi</a>
+                dan memahami bagaimana data yang saya berikan digunakan untuk meninjau
+                dan menindaklanjuti permintaan layanan saya.
               </span>
             </label>
           </div>
@@ -346,6 +359,95 @@
             hidden
           ></p>
         </form>
+
+        <!-- POPUP KONFIRMASI PERMINTAAN JASA -->
+        <div
+            id="requestConfirmModal"
+            class="request-modal"
+            hidden
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="requestConfirmTitle"
+        >
+            <div class="request-modal__backdrop" data-close-request-modal></div>
+
+            <div class="request-modal__panel">
+                <h2 id="requestConfirmTitle">Periksa Permintaan Anda</h2>
+
+                <p class="request-modal__intro">
+                    Pastikan informasi berikut sudah benar sebelum mengirim permintaan.
+                </p>
+
+                <dl class="request-modal__details">
+                    <div>
+                        <dt>Nama</dt>
+                        <dd id="confirmCustomerName">-</dd>
+                    </div>
+                    <div>
+                        <dt>Kategori Layanan</dt>
+                        <dd id="confirmCategory">-</dd>
+                    </div>
+                    <div id="confirmWorkersRow">
+                        <dt>Jumlah Pekerja</dt>
+                        <dd id="confirmWorkers">-</dd>
+                    </div>
+                    <div>
+                        <dt>Lokasi</dt>
+                        <dd id="confirmLocation">-</dd>
+                    </div>
+                    <div>
+                        <dt>Tanggal Pilihan</dt>
+                        <dd id="confirmDate">-</dd>
+                    </div>
+                    <div>
+                        <dt>Deskripsi</dt>
+                        <dd id="confirmDescription">-</dd>
+                    </div>
+                    <div>
+                        <dt>Estimasi Biaya Layanan</dt>
+                        <dd id="confirmPrice">Belum tersedia</dd>
+                    </div>
+                </dl>
+
+                <p class="request-modal__note">
+                    Ini masih estimasi, bukan harga final. Tim BANTULOKAL HUB
+                    akan meninjau permintaan dan mengonfirmasi ketersediaan
+                    serta total biaya sebelum pembayaran.
+                </p>
+
+            <div class="request-modal__privacy">
+                <h3>Pelindungan Data Pribadi</h3>
+                <p>
+                    Nama, nomor WhatsApp, email, lokasi, dan detail pekerjaan yang Anda
+                    masukkan akan digunakan untuk meninjau permintaan, menghubungi Anda,
+                    dan mengoordinasikan layanan yang diminta.
+                </p>
+                <p>
+                    Data Anda akan ditangani sesuai
+                    <a href="../kebijakan-privasi.html" target="_blank" rel="noopener noreferrer">Kebijakan Privasi BANTULOKAL HUB</a>.
+                    Silakan baca juga
+                    <a href="../syarat-ketentuan.html" target="_blank" rel="noopener noreferrer">Syarat dan Ketentuan</a>
+                    sebelum melanjutkan.
+                </p>
+                <p>
+                    <strong>Catatan:</strong> Mengirim permintaan belum menjamin
+                    ketersediaan freelancer atau persetujuan pekerjaan. Biaya final
+                    akan dikonfirmasi sebelum pembayaran.
+                </p>
+            </div>
+
+                <div class="request-modal__actions">
+                    <button type="button" id="editRequestButton">
+                        Kembali untuk Mengedit
+                    </button>
+                    <button type="button" id="confirmRequestButton">
+                        Ya, Kirim Permintaan
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        </div>
       </div>
     </div>
   </section>
@@ -558,6 +660,12 @@
   <div class="wrap footer-inner">
     <p class="footer-brand">Jasa<span>Bantu</span>Lokal</p>
     <p>Pilar jasa harian terampil BANTULOKAL HUB, berdampingan dengan SewaAlatLokal.</p>
+        <p>
+    Hubungi kami:
+    <a href="mailto:projectworksid@gmail.com">
+        projectworksid@gmail.com
+    </a>
+    </p>
     <nav class="footer-map" aria-label="Peta situs">
       <a href="../index.html">Beranda HUB</a>
       <a href="index.html">JasaBantuLokal</a>
