@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Alat: SewaAlatLokal</title>
+  <meta name="description" content="Lihat detail alat yang tersedia untuk disewa di SewaAlatLokal.">
+  <meta name="theme-color" content="#FAF6EF">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body id="top">
+<a class="skip-link" href="#utama">Langsung ke konten</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">Sewa<span>Alat</span>Lokal</a>
+
+    <button class="nav-toggle" id="navToggle"
+      aria-expanded="false" aria-controls="navMenu">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="visually-hidden">Buka menu navigasi</span>
+    </button>
+
+    <nav class="nav-menu" id="navMenu" aria-label="Navigasi utama">
+      <a href="katalog.html" aria-current="page">Katalog</a>
+      <a href="index.html#cara-sewa">Cara Sewa</a>
+      <a href="layanan.html">Layanan</a>
+      <a href="faq.html">FAQ</a>
+      <a href="../jasabantulokal/index.html">JasaBantu</a>
+      <a class="btn btn-accent btn-small" href="daftar.html">Daftarkan Alat</a>
+    </nav>
+  </div>
+</header>
+
+<main id="utama">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Beranda</a></li>
+        <li><a href="katalog.html">Katalog</a></li>
+        <li><span id="breadcrumbName" aria-current="page">Detail alat</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div id="detailLoading" class="catalog-message" role="status">
+        Memuat detail alat...
+      </div>
+
+      <div id="detailError" class="form-result" role="alert" hidden>
+        <h2>Detail alat belum dapat dimuat</h2>
+        <p id="detailErrorMessage">
+          Silakan coba lagi beberapa saat.
+        </p>
+        <button class="btn btn-accent btn-small" id="retryDetail">
+          Coba lagi
+        </button>
+        <a class="btn btn-small" href="katalog.html">Kembali ke katalog</a>
+      </div>
+
+      <div id="equipmentDetail" class="equipment-detail" hidden>
+        <div class="equipment-detail-layout">
+          <div class="equipment-detail-gallery">
+            <div id="detailMainImage" class="equipment-detail-main-image">
+              <span>Foto belum tersedia</span>
+            </div>
+            <div id="detailThumbnails" class="equipment-detail-thumbnails"></div>
+          </div>
+
+          <div class="equipment-detail-info">
+            <p id="detailCategory" class="equipment-card-category"></p>
+            <h1 id="detailName"></h1>
+            <p id="detailLocation" class="equipment-detail-location"></p>
+
+            <div class="equipment-detail-price">
+              <span>Harga sewa</span>
+              <strong id="detailPrice"></strong>
+              <span>/ hari</span>
+            </div>
+
+            <div class="equipment-detail-deposit">
+              <span>Deposit terpisah</span>
+              <strong id="detailDeposit"></strong>
+            </div>
+
+            <div class="equipment-detail-meta">
+              <div>
+                <span>Kondisi alat</span>
+                <strong id="detailCondition"></strong>
+              </div>
+              <div>
+                <span>Status</span>
+                <strong>Tersedia untuk diajukan</strong>
+              </div>
+            </div>
+
+            <a href="#formPengajuan" class="btn btn-accent">
+              Ajukan sewa
+            </a>
+
+            <p class="equipment-detail-note">
+              Pengajuan belum menjadi konfirmasi sewa. Admin akan memeriksa
+              ketersediaan alat dan menghubungi kamu untuk langkah berikutnya.
+            </p>
+          </div>
+        </div>
+
+        <section class="equipment-description">
+          <h2>Deskripsi alat</h2>
+          <p id="detailDescription"></p>
+        </section>
+
+        <section class="rental-request-section" id="formPengajuan">
+          <h2>Ajukan sewa alat</h2>
+          <p class="section-intro">
+            Isi data berikut agar admin dapat memeriksa permintaan sewa kamu.
+          </p>
+
+          <div id="bookingResult" class="form-result" role="status" tabindex="-1" hidden>
+            <h3 id="bookingResultTitle"></h3>
+            <div id="bookingResultContent"></div>
+          </div>
+
+          <form id="bookingForm" class="rental-form">
+            <div class="rental-form-grid">
+              <div class="form-field">
+                <label for="customerName">Nama lengkap</label>
+                <input id="customerName" name="customer_name"
+                  type="text" maxlength="150" autocomplete="name" required>
+              </div>
+
+              <div class="form-field">
+                <label for="customerEmail">Alamat email</label>
+                <input id="customerEmail" name="customer_email"
+                  type="email" maxlength="255" autocomplete="email" required>
+              </div>
+
+              <div class="form-field">
+                <label for="customerWhatsapp">Nomor WhatsApp</label>
+                <input id="customerWhatsapp" name="customer_whatsapp"
+                  type="tel" maxlength="30" autocomplete="tel"
+                  placeholder="Contoh: 081234567890" required>
+              </div>
+
+              <div class="form-field">
+                <label for="rentalStartDate">Tanggal mulai sewa</label>
+                <input id="rentalStartDate" name="rental_start_date"
+                  type="date" required>
+              </div>
+
+              <div class="form-field">
+                <label for="rentalEndDate">Tanggal selesai sewa</label>
+                <input id="rentalEndDate" name="rental_end_date"
+                  type="date" required>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="customerNotes">Catatan tambahan (opsional)</label>
+              <textarea id="customerNotes" name="customer_notes"
+                rows="4" maxlength="2000"
+                placeholder="Ceritakan kebutuhan atau pertanyaan kamu."></textarea>
+            </div>
+
+            <div class="rental-cost-summary">
+              <div>
+                <span>Durasi sewa</span>
+                <strong id="rentalDuration">Pilih tanggal sewa</strong>
+              </div>
+              <div>
+                <span>Estimasi biaya sewa</span>
+                <strong id="rentalEstimate">—</strong>
+              </div>
+              <div>
+                <span>Deposit (terpisah)</span>
+                <strong id="rentalDepositSummary">—</strong>
+              </div>
+            </div>
+
+            <p class="equipment-detail-note">
+              Estimasi ini belum termasuk deposit. Ketersediaan dan total
+              akhir akan diperiksa oleh admin sebelum sewa dikonfirmasi.
+            </p>
+
+            <button id="submitBooking" class="btn btn-accent" type="submit">
+              Kirim pengajuan sewa
+            </button>
+            <p id="bookingFormStatus" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p class="footer-brand">Sewa<span>Alat</span>Lokal</p>
+    <p>Bagian dari BANTULOKAL HUB: sewa barang antarwarga dan jasa harian terampil dalam satu platform komunitas.</p>
+    <nav class="footer-map" aria-label="Peta situs">
+      <a href="../index.html">Beranda HUB</a>
+      <a href="katalog.html">Katalog</a>
+      <a href="layanan.html">Layanan</a>
+      <a href="faq.html">FAQ</a>
+      <a href="../jasabantulokal/index.html">JasaBantuLokal</a>
+      <a href="daftar.html">Daftarkan Alat</a>
+      <a href="../tentang-kami.html">Tentang Kami</a>
+      <a href="../kebijakan-privasi.html">Kebijakan Privasi</a>
+      <a href="../syarat-ketentuan.html">Syarat &amp; Ketentuan</a>
+    </nav>
+    <a class="footer-top" href="#top">Kembali ke atas</a>
+
+
+<div id="termsModal" class="terms-modal" hidden>
+  <div class="terms-backdrop" data-close-terms></div>
+
+  <section
+    class="terms-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="termsTitle"
+    aria-describedby="termsIntro"
+    tabindex="-1"
+  >
+    <div class="terms-dialog-header">
+      <div>
+        <p class="equipment-card-category">SEWAALATLOKAL</p>
+        <h2 id="termsTitle">Syarat dan Ketentuan Sewa</h2>
+      </div>
+      <button
+        type="button"
+        class="terms-close"
+        id="closeTerms"
+        aria-label="Tutup syarat dan ketentuan"
+      >&times;</button>
+    </div>
+
+    <div class="terms-dialog-body">
+      <p id="termsIntro">
+        Sebelum mengirim pengajuan, silakan baca ketentuan berikut.
+      </p>
+
+      <h3>1. Pengajuan dan konfirmasi sewa</h3>
+      <p>
+        Pengajuan melalui situs ini belum merupakan konfirmasi atau jaminan
+        bahwa alat tersedia. Admin akan memeriksa ketersediaan dan menghubungi
+        kamu sebelum sewa dikonfirmasi.
+      </p>
+
+      <h3>2. Periode dan biaya sewa</h3>
+      <p>
+        Periode sewa mengikuti tanggal yang kamu pilih. Estimasi biaya
+        dihitung berdasarkan harga per hari dan jumlah hari sewa, termasuk
+        tanggal mulai dan tanggal selesai.
+      </p>
+
+      <h3>3. Deposit</h3>
+      <p>
+        Deposit berbeda dari biaya sewa dan tidak otomatis termasuk dalam
+        estimasi biaya sewa. Ketentuan pembayaran, pengembalian, dan potongan
+        deposit harus dikonfirmasi oleh admin sebelum transaksi disepakati.
+      </p>
+
+      <h3>4. Penggunaan dan pengembalian alat</h3>
+      <p>
+        Penyewa bertanggung jawab menggunakan alat dengan wajar, mengikuti
+        petunjuk penggunaannya, dan mengembalikannya sesuai waktu serta kondisi
+        yang disepakati. Ketentuan mengenai kerusakan atau kehilangan akan
+        dibicarakan sebelum sewa dikonfirmasi.
+      </p>
+
+      <h3>5. Pembatalan</h3>
+      <p>
+        Jika ingin membatalkan atau mengubah tanggal, hubungi admin secepatnya.
+        Ketentuan pembatalan dan kemungkinan biaya harus dikonfirmasi sebelum
+        transaksi disepakati.
+      </p>
+
+      <h3>6. Privasi</h3>
+      <p>
+        Nama, email, nomor WhatsApp, dan informasi pengajuan digunakan untuk
+        memproses permintaan sewa dan menghubungi kamu terkait transaksi.
+        Baca
+        <a href="../kebijakan-privasi.html" target="_blank" rel="noopener">
+          Kebijakan Privasi
+        </a>
+        untuk informasi lebih lanjut.
+      </p>
+
+      <h3>7. Ketentuan lengkap</h3>
+      <p>
+        Baca juga
+        <a href="../syarat-ketentuan.html" target="_blank" rel="noopener">
+          Syarat dan Ketentuan BANTULOKAL HUB
+        </a>.
+        Jika ada ketentuan yang belum jelas, tanyakan kepada admin sebelum
+        menyetujui transaksi.
+      </p>
+
+      <p class="terms-version">
+        Versi ketentuan pengajuan sewa: rental-terms-v1
+      </p>
+    </div>
+
+    <div class="terms-dialog-footer">
+      <label class="terms-acknowledgement">
+        <input type="checkbox" id="termsAccepted">
+        <span>
+          Saya menyatakan telah membaca dan menyetujui syarat dan ketentuan
+          pengajuan sewa di atas.
+        </span>
+      </label>
+
+      <p id="termsValidation" role="alert" hidden>
+        Centang persetujuan terlebih dahulu untuk melanjutkan.
+      </p>
+
+      <div class="terms-actions">
+        <button type="button" class="btn" id="cancelTerms">
+          Kembali
+        </button>
+        <button
+          type="button"
+          class="btn btn-accent"
+          id="confirmTerms"
+          disabled
+        >
+          Saya Setuju &amp; Lanjutkan
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+  </div>
+</footer>
+
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

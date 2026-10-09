@@ -7,3 +7,479 @@
 @import "base.css" layer(base);
 @import "components.css" layer(components);
 @import "utilities.css" layer(utilities);
+
+
+/* ===== Dynamic equipment catalogue ===== */
+.equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.equipment-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #e4ded4;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.equipment-card-image {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f1ece4;
+}
+
+.equipment-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.equipment-card-image.is-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  color: #655f55;
+  text-align: center;
+}
+
+.equipment-card-info {
+  padding: 1rem;
+}
+
+.equipment-card-name {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.equipment-card-price {
+  margin: 0 0 0.4rem;
+  font-weight: 700;
+}
+
+.equipment-card-category {
+  margin: 0;
+  color: #655f55;
+  font-size: 0.875rem;
+}
+
+.catalog-message {
+  grid-column: 1 / -1;
+  padding: 1.5rem 0;
+}
+
+@media (max-width: 700px) {
+  .equipment-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .equipment-card-info {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .equipment-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.equipment-card-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  border-radius: inherit;
+}
+
+.equipment-card-link:focus-visible {
+  outline: 3px solid var(--color-primary, #2563eb);
+  outline-offset: 4px;
+}
+
+.equipment-card-link:hover .equipment-card-name {
+  text-decoration: underline;
+}
+
+
+/* ===== Detail alat ===== */
+.equipment-detail {
+  max-width: 1080px;
+  margin-inline: auto;
+}
+
+.equipment-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.equipment-detail-main-image {
+  min-height: 320px;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #eee8df;
+  color: #665f55;
+}
+
+.equipment-detail-main-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: contain;
+}
+
+.equipment-detail-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.equipment-detail-thumbnail {
+  width: 76px;
+  height: 76px;
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  background: #eee8df;
+  cursor: pointer;
+}
+
+.equipment-detail-thumbnail[aria-pressed="true"] {
+  border-color: #3d6b4f;
+}
+
+.equipment-detail-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.equipment-detail-info h1 {
+  margin-block: 0.5rem;
+}
+
+.equipment-detail-location {
+  margin-top: 0.5rem;
+  color: #665f55;
+}
+
+.equipment-detail-price,
+.equipment-detail-deposit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.equipment-detail-price strong {
+  font-size: 1.6rem;
+}
+
+.equipment-detail-deposit {
+  padding: 0.85rem;
+  border-radius: 0.75rem;
+  background: #f2ede5;
+}
+
+.equipment-detail-meta {
+  display: grid;
+  gap: 0.75rem;
+  margin-block: 1.25rem;
+}
+
+.equipment-detail-meta div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.equipment-detail-note {
+  margin-top: 1rem;
+  color: #665f55;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.equipment-description,
+.rental-request-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e4ddd3;
+}
+
+.rental-form {
+  max-width: 800px;
+}
+
+.rental-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.form-field label {
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #d6cec2;
+  border-radius: 0.5rem;
+  background: #fff;
+  color: #242820;
+  font: inherit;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: 2px solid #3d6b4f;
+  outline-offset: 2px;
+}
+
+.rental-cost-summary {
+  display: grid;
+  gap: 0.75rem;
+  margin-block: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #e4ddd3;
+  border-radius: 0.75rem;
+}
+
+.rental-cost-summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+#bookingFormStatus {
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 760px) {
+  .equipment-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .equipment-detail-main-image,
+  .equipment-detail-main-image img {
+    min-height: 240px;
+  }
+
+  .rental-form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .rental-cost-summary div,
+  .equipment-detail-meta div {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+
+
+/* ===== Terms and conditions modal ===== */
+.terms-modal[hidden] {
+  display: none !important;
+}
+
+.terms-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.terms-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(24 29 24 / 65%);
+}
+
+.terms-dialog {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 680px);
+  max-height: min(88vh, 850px);
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #fffdf9;
+  color: #242820;
+  box-shadow: 0 1rem 4rem rgb(0 0 0 / 25%);
+}
+
+.terms-dialog-header,
+.terms-dialog-footer {
+  padding: 1.25rem;
+  background: #fffdf9;
+}
+
+.terms-dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  border-bottom: 1px solid #e4ddd3;
+}
+
+.terms-dialog-header h2 {
+  margin-top: 0.35rem;
+}
+
+.terms-close {
+  flex: 0 0 auto;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.terms-dialog-body {
+  overflow-y: auto;
+  padding: 1.25rem;
+  line-height: 1.65;
+}
+
+.terms-dialog-body h3 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.35rem;
+}
+
+.terms-dialog-body p {
+  margin-top: 0.35rem;
+}
+
+.terms-dialog-body a {
+  color: #315a40;
+  text-decoration: underline;
+}
+
+.terms-version {
+  margin-top: 1.5rem !important;
+  color: #665f55;
+  font-size: 0.85rem;
+}
+
+.terms-dialog-footer {
+  border-top: 1px solid #e4ddd3;
+}
+
+.terms-acknowledgement {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.terms-acknowledgement input {
+  flex: 0 0 auto;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.2rem;
+  accent-color: #3d6b4f;
+}
+
+#termsValidation {
+  margin-top: 0.75rem;
+  color: #a12d2d;
+  font-size: 0.9rem;
+}
+
+.terms-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.terms-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+body.terms-modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 520px) {
+  .terms-modal {
+    padding: 0.5rem;
+  }
+
+  .terms-dialog {
+    max-height: 94vh;
+  }
+
+  .terms-dialog-header,
+  .terms-dialog-footer,
+  .terms-dialog-body {
+    padding: 1rem;
+  }
+
+  .terms-actions {
+    flex-direction: column-reverse;
+  }
+
+  .terms-actions button {
+    width: 100%;
+  }
+}
+
+/* JasaBantuLokal worker-count slider */
+#requestWorkers {
+  accent-color: #665f55;
+}
+
+/* Service request terms checkbox */
+#serviceRequestForm .terms-checkbox {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  text-align: left;
+  cursor: pointer;
+  line-height: 1.6;
+}
+
+#serviceRequestForm .terms-checkbox input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin: 4px 0 0;
+  accent-color: #665f55;
+}
