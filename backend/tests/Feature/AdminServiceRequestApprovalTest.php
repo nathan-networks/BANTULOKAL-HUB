@@ -21,6 +21,8 @@ class AdminServiceRequestApprovalTest extends TestCase
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('is_admin')->default(false);
+            $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -71,6 +73,11 @@ class AdminServiceRequestApprovalTest extends TestCase
     public function test_admin_can_approve_request_and_calculate_the_correct_price_split(): void
     {
         $admin = User::factory()->create();
+
+        $admin->forceFill([
+            'is_admin' => true,
+            'is_active' => true,
+        ])->save();
 
         $category = ServiceCategory::create([
             'name' => 'Desain poster',

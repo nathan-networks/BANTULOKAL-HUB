@@ -23,6 +23,8 @@ class ResendPaymentConfirmationTest extends TestCase
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('is_admin')->default(false);
+            $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -75,6 +77,10 @@ class ResendPaymentConfirmationTest extends TestCase
     public function test_unpaid_service_request_cannot_resend_payment_confirmation(): void
     {
         $admin = User::factory()->create();
+        $admin->forceFill([
+            'is_admin' => true,
+            'is_active' => true,
+        ])->save();
 
         $category = ServiceCategory::create([
             'name' => 'Bersih-bersih',
@@ -117,6 +123,10 @@ class ResendPaymentConfirmationTest extends TestCase
         ]);
 
         $admin = User::factory()->create();
+        $admin->forceFill([
+            'is_admin' => true,
+            'is_active' => true,
+        ])->save();
 
         $category = ServiceCategory::create([
             'name' => 'Bersih-bersih',
@@ -174,6 +184,10 @@ class ResendPaymentConfirmationTest extends TestCase
         ]);
 
         $admin = User::factory()->create();
+        $admin->forceFill([
+            'is_admin' => true,
+            'is_active' => true,
+        ])->save();
 
         $category = ServiceCategory::create([
             'name' => 'Bersih-bersih',
@@ -234,6 +248,10 @@ class ResendPaymentConfirmationTest extends TestCase
         ]);
 
         $admin = User::factory()->create();
+        $admin->forceFill([
+            'is_admin' => true,
+            'is_active' => true,
+        ])->save();
 
         $category = ServiceCategory::create([
             'name' => 'Bersih-bersih',

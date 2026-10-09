@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Katalog Alat: SewaAlatLokal</title>
-<meta name="description" content="Katalog kategori alat SewaAlatLokal: perkakas pertukangan, tenda & outdoor, kamera foto. Verifikasi KTP pemilik dan escrow otomatis di setiap transaksi.">
+<meta name="description" content="Katalog kategori alat SewaAlatLokal: perkakas pertukangan, tenda & outdoor, kamera foto. Pemesanan, verifikasi pembayaran manual, dan pengelolaan sewa oleh tim BANTULOKAL HUB.">
 <meta property="og:title" content="Katalog Alat: SewaAlatLokal">
-<meta property="og:description" content="Katalog kategori alat SewaAlatLokal: perkakas pertukangan, tenda & outdoor, kamera foto. Verifikasi KTP pemilik dan escrow otomatis di setiap transaksi.">
+<meta property="og:description" content="Cari alat untuk disewa dari warga sekitar. Pemesanan ditinjau admin dan pembayaran diverifikasi melalui transfer bank sebelum serah terima.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bantulokal.example/sewaalatlokal/katalog.html">
 <meta name="theme-color" content="#FAF6EF">
@@ -16,18 +16,22 @@
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='5' fill='%233D6B4F'/%3E%3Ccircle cx='16' cy='10' r='3' fill='%23FAF6EF'/%3E%3Cpath d='M16 14v10' stroke='%23FAF6EF' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 </head>
+
 <body id="top">
 <a class="skip-link" href="#utama">Langsung ke konten</a>
 
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="index.html">Sewa<span>Alat</span>Lokal</a>
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+
+    <button class="nav-toggle" id="navToggle"
+            aria-expanded="false" aria-controls="navMenu">
       <span class="nav-toggle-bar"></span>
       <span class="nav-toggle-bar"></span>
       <span class="nav-toggle-bar"></span>
       <span class="visually-hidden">Buka menu navigasi</span>
     </button>
+
     <nav class="nav-menu" id="navMenu" aria-label="Navigasi utama">
       <a href="katalog.html" aria-current="page">Katalog</a>
       <a href="index.html#cara-sewa">Cara Sewa</a>
@@ -55,10 +59,11 @@
       <p class="section-intro">
         Temukan alat yang bisa kamu sewa dari warga sekitar.
         Pilih kategori untuk menyaring katalog.
+        Ketersediaan dan biaya sewa akan dikonfirmasi oleh tim sebelum pembayaran.
       </p>
 
       <div class="filterbar" id="equipmentFilters"
-          role="group" aria-label="Filter kategori">
+           role="group" aria-label="Filter kategori">
         <button class="filter" data-filter="semua" aria-pressed="true">
           Semua
         </button>
@@ -76,46 +81,107 @@
         </button>
       </div>
 
-        <div id="equipmentGrid" class="catalog equipment-grid"
-            aria-live="polite">
-          <p class="catalog-message">Memuat katalog alat...</p>
-        </div>
+      <div id="equipmentGrid" class="catalog equipment-grid"
+           aria-live="polite">
+        <p class="catalog-message">Memuat katalog alat...</p>
+      </div>
 
-        <div id="catalogEmpty" class="form-result" hidden role="status">
-          <p>Belum ada alat yang tersedia dalam kategori ini.</p>
-        </div>
+      <div id="catalogEmpty" class="form-result" hidden role="status">
+        <p>Belum ada alat yang tersedia dalam kategori ini.</p>
+      </div>
 
-        <div id="catalogError" class="form-result" hidden role="alert">
-          <p>Katalog belum dapat dimuat. Silakan coba lagi.</p>
-          <button class="btn btn-accent btn-small" id="retryCatalog">
-            Coba lagi
-          </button>
-        </div>
-
+      <div id="catalogError" class="form-result" hidden role="alert">
+        <p>Katalog belum dapat dimuat. Silakan coba lagi.</p>
+        <button class="btn btn-accent btn-small" id="retryCatalog">
+          Coba lagi
+        </button>
+      </div>
     </div>
   </section>
 
   <section class="section section-tinted">
     <div class="wrap">
-      <h2>Alat yang dicari paling sering</h2>
-      <p class="section-intro">Kategori yang paling banyak ditunggu warga. Semua kategori mendapat verifikasi dan escrow yang sama.</p>
+      <h2>Alat untuk berbagai kebutuhan</h2>
+      <p class="section-intro">
+        Temukan alat sesuai kebutuhanmu. Setiap pemesanan ditinjau
+        oleh admin, dan pembayaran dilakukan melalui transfer bank
+        setelah biaya sewa serta deposit dikonfirmasi.
+      </p>
+
       <div class="safety">
         <div class="safety-item">
           <span class="safety-label">Perkakas</span>
           <h3>Untuk perbaikan rumah</h3>
-          <p>Bor, tangga, gergaji. Rata-rata dipakai beberapa jam per bulan; sewa jauh lebih murah daripada membeli.</p>
+          <p>
+            Bor, tangga, dan gergaji untuk membantu pekerjaan rumah
+            tanpa harus membeli alat yang hanya digunakan sesekali.
+          </p>
         </div>
+
         <div class="safety-item">
           <span class="safety-label">Outdoor</span>
-          <h3>Untuk liburan musiman</h3>
-          <p>Tenda kamping dan perlengkapan luar ruang. Pemakaian beberapa hari dalam setahun.</p>
+          <h3>Untuk liburan dan kegiatan luar ruang</h3>
+          <p>
+            Tenda kamping dan perlengkapan luar ruang untuk perjalanan
+            atau aktivitas musiman.
+          </p>
         </div>
+
         <div class="safety-item">
           <span class="safety-label">Fotografi</span>
           <h3>Untuk acara spesial</h3>
-          <p>Kamera untuk kondangan, ulang tahun, atau proyek kecil. Tanpa komitmen beli.</p>
+          <p>
+            Kamera untuk acara keluarga, ulang tahun, atau proyek
+            tertentu tanpa harus membeli perangkat sendiri.
+          </p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Bagaimana transaksi dilakukan?</h2>
+      <p class="section-intro">
+        Tim BANTULOKAL HUB membantu mengelola pemesanan dan memverifikasi
+        pembayaran sebelum alat diserahkan.
+      </p>
+
+      <div class="safety">
+        <div class="safety-item">
+          <span class="safety-label">01</span>
+          <h3>Konfirmasi pemesanan</h3>
+          <p>
+            Admin meninjau jadwal, ketersediaan alat, biaya sewa,
+            dan deposit sebelum memberikan instruksi pembayaran.
+          </p>
+        </div>
+
+        <div class="safety-item">
+          <span class="safety-label">02</span>
+          <h3>Transfer bank</h3>
+          <p>
+            Penyewa melakukan transfer sesuai instruksi pembayaran.
+            Admin memeriksa dan mengonfirmasi pembayaran secara manual.
+          </p>
+        </div>
+
+        <div class="safety-item">
+          <span class="safety-label">03</span>
+          <h3>Serah terima dan pengembalian</h3>
+          <p>
+            Setelah pembayaran diverifikasi, alat dapat diserahkan.
+            Tim mencatat proses serah terima dan pengembalian sesuai
+            prosedur penyewaan.
+          </p>
+        </div>
+      </div>
+
+      <p class="form-note">
+        Pembayaran tidak menggunakan escrow otomatis.
+        Pengembalian deposit mengikuti ketentuan sewa dan hasil
+        pemeriksaan kondisi alat.
+      </p>
     </div>
   </section>
 </main>
@@ -123,13 +189,18 @@
 <footer class="footer">
   <div class="wrap footer-inner">
     <p class="footer-brand">Sewa<span>Alat</span>Lokal</p>
-    <p>Bagian dari BANTULOKAL HUB: sewa barang antarwarga dan jasa harian terampil dalam satu platform komunitas.</p>
-            <p>
-    Hubungi kami:
-    <a href="mailto:projectworksid@gmail.com">
-        projectworksid@gmail.com
-    </a>
+    <p>
+      Bagian dari BANTULOKAL HUB: sewa barang antarwarga dan jasa
+      harian terampil dalam satu platform komunitas.
     </p>
+
+    <p>
+      Hubungi kami:
+      <a href="mailto:projectworksid@gmail.com">
+        projectworksid@gmail.com
+      </a>
+    </p>
+
     <nav class="footer-map" aria-label="Peta situs">
       <a href="../index.html">Beranda HUB</a>
       <a href="katalog.html">Katalog</a>
@@ -141,7 +212,12 @@
       <a href="../kebijakan-privasi.html">Kebijakan Privasi</a>
       <a href="../syarat-ketentuan.html">Syarat &amp; Ketentuan</a>
     </nav>
-    <p class="footer-note">Katalog unit dalam masa persiapan; pendaftaran online belum terhubung ke server.</p>
+
+    <p class="footer-note">
+      Ketersediaan alat mengikuti katalog yang ditampilkan.
+      Pemesanan dan pembayaran diproses sesuai prosedur platform.
+    </p>
+
     <a class="footer-top" href="#top">Kembali ke atas</a>
   </div>
 </footer>

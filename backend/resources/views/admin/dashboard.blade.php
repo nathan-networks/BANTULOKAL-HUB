@@ -279,6 +279,14 @@
                 Kelola Permintaan Jasa
                 ({{ $counts['pending_service_requests'] }})
             </a>
+            <a href="{{ route('admin.bookings.index') }}" class="dashboard-button">
+            Kelola Permintaan Sewa ({{ $counts['pending_bookings'] }})
+            </a>
+
+            <a href="{{ route('admin.admins.index') }}" class="dashboard-button">
+                Manajemen Admin
+            </a>
+
         </div>
 
         <section class="stats-grid">

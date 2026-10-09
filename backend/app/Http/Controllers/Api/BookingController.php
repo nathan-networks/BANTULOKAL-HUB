@@ -8,6 +8,9 @@ use App\Models\Equipment;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\RentalBookingReceived;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class BookingController extends Controller
 {
@@ -84,6 +87,50 @@ class BookingController extends Controller
             'terms_version' => $data['terms_version'],
             'terms_accepted_at' => now(),
         ]);
+
+            // Send acknowledgement after the booking has been saved.
+            try {
+                $url = config('services.apps_script_email.url');
+                $token = config('services.apps_script_email.token');
+
+                if (! $url || ! $token) {
+                    throw new \RuntimeException(
+                        'Apps Script email settings are missing.'
+                    );
+                }
+
+                $booking->load('equipment');
+
+                $mail = new RentalBookingReceived($booking);
+
+                $response = Http::asJson()
+                    ->timeout(30)
+                    ->post($url, [
+                        'token' => $token,
+                        'to' => $booking->customer_email,
+                        'subject' => $mail->envelope()->subject,
+                        'html' => $mail->render(),
+                    ]);
+
+                $response->throw();
+
+                $result = $response->json();
+
+                if (($result['success'] ?? false) !== true) {
+                    throw new \RuntimeException(
+                        'Apps Script did not confirm success: ' .
+                        json_encode($result)
+                    );
+                }
+
+                $booking->acknowledgement_sent_at = now();
+                $booking->save();
+            } catch (\Throwable $exception) {
+                Log::error('Rental booking acknowledgement email failed.', [
+                    'booking_id' => $booking->id,
+                    'exception' => $exception->getMessage(),
+                ]);
+            }
 
         return response()->json([
             'message' => 'Pengajuan sewa berhasil dikirim.',

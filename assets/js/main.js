@@ -175,6 +175,45 @@
     loadEquipment();
   }
 
+
+  /* ===== Filter kategori statis di homepage ===== */
+  function initStaticCategoryFilter() {
+    var section = document.getElementById("katalog");
+    if (!section) return;
+
+    var filters = Array.prototype.slice.call(
+      section.querySelectorAll(".filterbar .filter")
+    );
+
+    var cards = Array.prototype.slice.call(
+      section.querySelectorAll("#catalogGrid .catcard")
+    );
+
+    if (filters.length === 0 || cards.length === 0) return;
+
+    filters.forEach(function (button) {
+      button.addEventListener("click", function () {
+        var selectedCategory = button.getAttribute("data-filter");
+
+        filters.forEach(function (filter) {
+          filter.setAttribute(
+            "aria-pressed",
+            filter === button ? "true" : "false"
+          );
+        });
+
+        cards.forEach(function (card) {
+          var matches =
+            selectedCategory === "semua" ||
+            card.getAttribute("data-cat") === selectedCategory;
+
+          card.hidden = !matches;
+        });
+      });
+    });
+}
+
+
   /* ===== Detail alat dan pengajuan sewa ===== */
   function initEquipmentDetail() {
     var detail = document.getElementById("equipmentDetail");
@@ -1061,6 +1100,7 @@ loadServicePricing();
 
   initNav();
   initCatalogFilter();
+  initStaticCategoryFilter();
   initDaftarForm();
   initEquipmentDetail();
   initFreelancerApplicationForm();
